@@ -2,7 +2,7 @@
 echo "Welcome to FlipCoin Simulator"
 numOfHeads=0
 numOfTails=0
-margin=0
+winner=0
 function Counter()
 {
 	if [ $1 -eq 0 ]
