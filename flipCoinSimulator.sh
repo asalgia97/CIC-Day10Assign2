@@ -1,53 +1,45 @@
 #!/bin/bash -x
 echo "Welcome to FlipCoin Simulator"
-
 numOfHeads=0
 numOfTails=0
 margin=0
-
-function resultCounter ()
+function Counter()
 {
 	if [ $1 -eq 0 ]
 		then
-			numOfHeads=$(( $numOfHeads + 1 ))
+			numOfHeads=$(($numOfHeads + 1))
 		else
-			numOfTails=$(( $numOfTails + 1 ))
+			numOfTails=$(($numOfTails + 1))
 		fi
 }
-
-function marginCheck ()
+function checkWinner()
 {
-	if [ $1 -gt $2 ]
+	if [$1 -gt $2]
 	then
-		winMargin=$(( $1 - $2 ))
+		win=$(( $1 - $2 ))
 	else
-		winMargin=$(( $2 - $1 ))
+		win=$(( $2 - $1 ))
 	fi
-	echo $winMargin
 }
-
-echo "Welcome To Flip Coin Simulator"
-
-	while [[ $numOfHeads -ne 21 && $numOfTails -ne 21 ]]
+	while [[$numOfHeads -ne 50 && $numOfTails -ne 50]]
 	do
-		flipResult=$(( RANDOM%2 ))
-		resultCounter $flipResult
+		flipOutput=$((RANDOM%2))
+		Counter $flipOutput
 	done
 
-margin=$( marginCheck $numOfHeads $numOfTails )
-if [ $margin -eq 0 ]
+winner=$( checkWinner $numOfHeads $numOfTails )
+if [ $winner -eq 0 ]
 then
-	while [ $margin -le 2 ]
+	while [ $winner -le 2 ]
 	do
-		flipResult=$(( RANDOM % 2 ))
-		resultCounter $flipResult
-		margin=$( marginCheck $numOfHeads $numOfTails )
+		flipOutput=$((RANDOM % 2))
+		Counter $flipOutput
+		winner=$( checkWinner $numOfHeads $numOfTails )
 	done
 fi
-
 if [ $numOfHeads -gt $numOfTails ]
 then
-	echo "Head Won  $margin over Tails"
+	echo "Head Won  $winner"
 else
-	echo "Tail Won $margin over Heads"
+	echo "Tail Won $winner"
 fi
