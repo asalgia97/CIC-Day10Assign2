@@ -1,26 +1,21 @@
 #!/bin/bash -x
 echo "Welcome to FlipCoin Simulator"
-
 numOfHeads=0
 numOfTails=0
+read -p "Do you want to flip a coin (t/f) : " val
 
-echo "Well To Flip Coin Simulator"
-
-read -p "Do you want to flip a coin (y/n) : " per
-
-while [ $per == "y" ]
+while [$val == "t"]
 do
-	flipResult=$(( RANDOM%2 ))
-	if [ $flipResult -eq 0 ]
+	read -p "Do you want to flip a coin again (t/f) : " val
+	flipOutput=$((RANDOM%2))
+	if[$flipOutput -eq 0]
 	then
-		echo "Heads"
 		numOfHeads=$(( $numOfHeads + 1 ))
+		echo "It is Heads"
 	else
-		echo "Tails"
 		numOfTails=$(( $numOfTails + 1 ))
+		echo "It is Tails"
 	fi
-	read -p "Do you want to flip a coin again (y/n) : " per
-done
-
-echo "Total number of Heads : " $noOfHeads
-echo "Total number of Tails : " $noOfTails
+	done
+echo "Total Heads:" $numOfHeads
+echo "Total Tails:" $numOfTails
