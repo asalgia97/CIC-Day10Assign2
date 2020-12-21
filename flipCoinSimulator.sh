@@ -1,14 +1,13 @@
 #!/bin/bash -x
 echo "Welcome to FlipCoin Simulator"
-read -p "Do you want to flip a coin (y/n) : " per
-
-if [ $per == "y" ]
+read -p "Do you want to flip a coin (t/f) : " val
+if [$val == "t"]
 then
-	flipResult=$(( RANDOM%2 ))
-	if [ $flipResult -eq 0 ]
+	flipOutput=$((RANDOM%2))
+	if[$flipOutput -eq 0]
 	then
-		echo "Heads"
+		echo "It is Heads"
 	else
-		echo "Tails"
+		echo "It is Tails"
 	fi
 fi
