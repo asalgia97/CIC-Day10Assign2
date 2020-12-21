@@ -1,29 +1,24 @@
 #!/bin/bash -x
 echo "Welcome to FlipCoin Simulator"
-
 numOfHeads=0
 numOfTails=0
-
-echo "Welcome To Flip Coin Simulator"
-
-while [[ $numOfHeads -ne 21 && $numOfTails -ne 21 ]]
+while [[$numOfHeads -ne 50 && $numOfTails -ne 50]]
 do
-	flipResult=$(( RANDOM%2 ))
-	if [ $flipResult -eq 0 ]
+	flipOutput=$((RANDOM%2))
+	if [ $flipOutput -eq 0 ]
 	then
-		echo "Heads"
 		numOfHeads=$(( $numOfHeads + 1 ))
+		echo "It is Heads"
 	else
-		echo "Tails"
 		numOfTails=$(( $numOfTails + 1 ))
+		echo "It is Tails"
 	fi
 done
-
-if [ $numOfHeads -eq 21 ]
+if [$numOfHeads -eq 50]
 then
-	winMargin=$(( $numOfHeads - $numOfTails ))
-	echo "Heads won by $winMargin over Tails"
+	win=$(( $numOfHeads - $numOfTails ))
+	echo "Heads won by $win"
 else
-	winMargin=$(( $numOfTails - $numOfHeads ))
-	echo "Tails won by $winMargin over Heads"
+	win=$(( $numOfTails - $numOfHeads ))
+	echo "Tails won by $win"
 fi
